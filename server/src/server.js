@@ -4,6 +4,12 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const swaggerDocs = require('./swagger'); // swagger.js import
 
+const userRoutes = require('./routes/userRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const reportRoutes = require('./routes/reportRoutes');
+
+
+
 // Load environment variables
 dotenv.config();
 
@@ -15,6 +21,10 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/users', userRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/reports', reportRoutes);
 
 // Test Route
 app.get('/', (req, res) => {
